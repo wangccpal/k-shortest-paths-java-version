@@ -45,6 +45,7 @@ public class Path implements BaseElementWithWeight {
 	
 	private List<BaseVertex> vertexList = new Vector<BaseVertex>();
 	private double weight = -1;
+	private int start=-1;//业务占用的起始频隙
 	
 	public Path() { }
 	
@@ -82,5 +83,13 @@ public class Path implements BaseElementWithWeight {
 	
 	public String toString() {
 		return vertexList.toString() + ":" + weight;
+	}
+
+	public int getStart() {
+		return start;
+	}
+
+	public void setStart(int start) {
+		this.start = start;
 	}
 }

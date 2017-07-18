@@ -50,7 +50,7 @@ import edu.asu.emit.algorithm.graph.shortestpaths.YenTopKShortestPathsAlg;
 public class YenTopKShortestPathsAlgTest {
 	// The graph should be initiated only once to guarantee the correspondence 
 	// between vertex id and node id in input text file. 
-	private static Graph graph = new VariableGraph("data/test_6_2");
+	private static Graph graph = new VariableGraph("data/USA-24.txt");
 	
 //	@Test
 	public void testDijkstraShortestPathAlg()
@@ -60,23 +60,23 @@ public class YenTopKShortestPathsAlgTest {
 		System.out.println(alg.getShortestPath(graph.getVertex(4), graph.getVertex(5)));
 	}
 	
-//	@Test
+	@Test
 	public void testYenShortestPathsAlg()
 	{		
 		System.out.println("Testing batch processing of top-k shortest paths!");
 		YenTopKShortestPathsAlg yenAlg = new YenTopKShortestPathsAlg(graph);
 		List<Path> shortest_paths_list = yenAlg.getShortestPaths(
-                graph.getVertex(4), graph.getVertex(5), 100);
+                graph.getVertex(3), graph.getVertex(12), 3);
 		System.out.println(":"+shortest_paths_list);
 		System.out.println(yenAlg.getResultList().size());
 	}
 	
-//	@Test
+	@Test
 	public void testYenShortestPathsAlg2()
 	{
 		System.out.println("Obtain all paths in increasing order! - updated!");
 		YenTopKShortestPathsAlg yenAlg = new YenTopKShortestPathsAlg(
-				graph, graph.getVertex(4), graph.getVertex(5));
+				graph, graph.getVertex(1), graph.getVertex(12));
 		int i=0;
 		while(yenAlg.hasNext())
 		{
@@ -88,7 +88,7 @@ public class YenTopKShortestPathsAlgTest {
 		System.out.println("All generated : "+yenAlg.getGeneratedPathSize());
 	}
 	
-	@Test
+//	@Test
 	public void testYenShortestPathsAlg4MultipleGraphs()
 	{
 		System.out.println("Graph 1 - ");

@@ -45,7 +45,7 @@ public class Pair<TYPE1, TYPE2> {
     
     public Pair(TYPE1 o1, TYPE2 o2) { 
     	this.o1 = o1; this.o2 = o2; 
-    }
+    } 
 
     public TYPE1 first() {
     	return o1;
