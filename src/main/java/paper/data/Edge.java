@@ -1,5 +1,6 @@
 package paper.data;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -15,7 +16,20 @@ public class Edge {
 //	ÆßÌõ¹âÏË
 	public static Map<String,Edge> emap = new HashMap();
 	Slot[][] slotList = new Slot[FiberNum][slotNum];
+	double [] useRate = new double [FiberNum];
 	
+	public String calUseRate() {
+		double sum = 0;
+		for(int i=0;i<FiberNum;i++) {
+			int used = 0;
+			for(int j =0;j<slotNum;j++) {
+				if(slotList[i][j].isUsed()) used++;
+			}
+			useRate[i] = (double)used/slotNum;
+			sum+=useRate[i];
+		}
+		return Arrays.toString(useRate) + sum;
+	}
 	public Slot[][] getSlotList() {
 		return slotList;
 	}
@@ -55,6 +69,11 @@ public class Edge {
 				y=0;
 			}
 		}
+	}
+
+	@Override
+	public String toString() {
+		return "Edge [+id=" + id + ", weight=" + weight + "]" + calUseRate();
 	}
 
 	public void setVertexId2(int vertexId2) {

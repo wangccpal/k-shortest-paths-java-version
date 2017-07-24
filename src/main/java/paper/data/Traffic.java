@@ -20,18 +20,25 @@ public class Traffic implements Serializable {
 	private static final long serialVersionUID = -6817159874724577640L;
 	public static List<Traffic> tlist = new LinkedList();
 
-	// 随机生成一些业务
+	/**
+	 *  随机生成一些业务
+	 * @param num 生成的业务数量
+	 * @param from 起点的范围
+	 * @param to	  重点的范围
+	 */
 	public static void randomGenTraffic(int num, int from, int to) {
 		int[] slotnum = { 3, 4, 5 }; // 业务的slot数量
 		Random r = new Random();
 		for (int i = 0; i < num; i++) {
-			int fromid = r.nextInt(from);
-			int toid = r.nextInt(to);
+			int fromid = r.nextInt(from)+1;
+			int toid = r.nextInt(to)+1;
 			while (fromid == toid)
-				toid = r.nextInt(to);
+				toid = r.nextInt(to)+1;
 			tlist.add(new Traffic(slotnum[r.nextInt(3)], fromid, toid,i));
 		}
 	}
+	
+	
 
 	public static void serialTraffic(String File) {
 		try {
@@ -68,10 +75,17 @@ public class Traffic implements Serializable {
 		}
 
 	}
+	public static double blockingRate() {
+		int count = 0;
+		for(Traffic t: Traffic.tlist) {
+			if(!t.isSuccess()) count++;
+		}
+		return (double)count/tlist.size();
+	}
 
 	@Override
 	public String toString() {
-		return "Traffic [slotNum=" + slotNum + ", from=" + from + ", to=" + to + "]";
+		return "Traffic [slotNum=" + slotNum + ", id=" + id + ", from=" + from + ", to=" + to + ", success="+success + "]:" + edgeList;
 	}
 
 	public Traffic(int slotNum, int from, int to,int id) {
@@ -105,6 +119,14 @@ public class Traffic implements Serializable {
 
 	public void setTo(int to) {
 		this.to = to;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public double getRate() {

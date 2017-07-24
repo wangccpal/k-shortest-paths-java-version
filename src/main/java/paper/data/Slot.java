@@ -1,13 +1,23 @@
 package paper.data;
 
 public class Slot {
+	public int getTraffic() {
+		return trafficId;
+	}
+	public void setTraffic(int  trafficId) {
+		this.trafficId = trafficId;
+	}
+	@Override
+	public String toString() {
+		return "Slot [used=" + used + ", traffic=" + trafficId + "]";
+	}
 	public Slot(double rate) {
 		super();
 		this.rate = rate;
 	}
 	double rate;
 	boolean used=false;
-	Traffic traffic;
+	int trafficId;
 	public double getRate() {
 		return rate;
 	}

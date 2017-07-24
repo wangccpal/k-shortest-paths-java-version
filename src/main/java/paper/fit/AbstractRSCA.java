@@ -12,17 +12,17 @@ import paper.data.Traffic;
 public class AbstractRSCA {
 	public static void main(String[] args) {
 		Graph graph = new VariableGraph("data/JPN-12.txt");
-		Traffic.unSerialTraffic("d:\\traffic.obj");
+		Traffic.unSerialTraffic("d:\\traffic1000.obj");
 		SlotAssignAlgr sa = new FirstFitAlgrImpl();//设定时隙分配策略
 		System.out.println("Testing batch processing of top-k shortest paths!");
 		YenTopKShortestPathsAlg yenAlg = new YenTopKShortestPathsAlg(graph);
-		
+		int i=0;
 		for(Traffic tra : Traffic.tlist){
 		List<Path> shortest_paths_list = yenAlg.getShortestPaths(graph.getVertex(tra.getFrom()), graph.getVertex(tra.getTo()), 3);
-		System.out.println(":" + shortest_paths_list);
+//		System.out.println(":" + shortest_paths_list);
 		boolean pathSuccess = false;
 			for(Path p : shortest_paths_list){
-				if(sa.slotAssign(p, tra.getSlotNum())){
+				if(sa.slotAssign(p, tra)){
 					pathSuccess = true;
 					tra.setPath(p);
 					break;//break的是path的分配
@@ -43,7 +43,7 @@ public class AbstractRSCA {
 //					}
 			}
 			tra.setSuccess(pathSuccess);
-			System.out.println("业务路由是"+ tra.getPath());
+			System.out.println("业务: "+(i++)+" 路由是"+ tra.getPath());
 		}
 	}
 	

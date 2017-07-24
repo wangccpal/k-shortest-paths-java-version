@@ -46,7 +46,15 @@ public class Path implements BaseElementWithWeight {
 	private List<BaseVertex> vertexList = new Vector<BaseVertex>();
 	private double weight = -1;
 	private int start=-1;//业务占用的起始频隙
-	
+	private int over=-1;
+	public int getOver() {
+		return over;
+	}
+
+	public void setOver(int over) {
+		this.over = over;
+	}
+
 	public Path() { }
 	
 	public Path(List<BaseVertex> vertexList, double weight) {
@@ -82,7 +90,7 @@ public class Path implements BaseElementWithWeight {
 	}
 	
 	public String toString() {
-		return vertexList.toString() + ":" + weight;
+		return vertexList.toString() + ":" + weight + ", startSlot : " + start +"--" + over;
 	}
 
 	public int getStart() {
