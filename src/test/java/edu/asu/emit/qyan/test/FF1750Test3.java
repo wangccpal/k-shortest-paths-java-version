@@ -20,8 +20,8 @@ import paper.fit.FirstFitPlusImpl;
 import paper.fit.FirstLastFitAlgrImpl;
 import paper.fit.SlotAssignAlgr;
 
-public class FF320Test {
-	public static final String file = "d:\\\\traffic320.obj";
+public class FF1750Test3 {
+	public static final String file = "d:\\traffic1750.obj";
 //	@BeforeTest
 	public void generateTraTest(){
 			String file = "d:\\traffic320.obj";

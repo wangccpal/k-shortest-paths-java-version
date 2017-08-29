@@ -1,5 +1,7 @@
 package paper.fit;
 
+import java.util.List;
+
 import edu.asu.emit.algorithm.graph.Path;
 import paper.data.Edge;
 import paper.data.Slot;
@@ -88,5 +90,19 @@ public class FirstFitOriImpl implements SlotAssignAlgr {
 		} else
 			return true;
 	}
-
+	public void slotRelease(Traffic traffic) {
+		Path path = traffic.getPath();
+		if(path==null) return ;
+		List<Edge> edgeList = traffic.getEdgeList();
+		int start = path.getStart();
+		int over = traffic.getSlotNum();
+		for(Edge e : edgeList) {
+			int x = start/320;
+			int y = start%320;
+			for(int i=0;i<over;i++) {
+			e.getSlotList()[x][y+i].setUsed(false);
+			e.getSlotList()[x][y+i].setTraffic(0);;
+			}
+		}
+	}
 }

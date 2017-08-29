@@ -171,4 +171,20 @@ public class Traffic implements Serializable {
 	public void setSuccess(boolean success) {
 		this.success = success;
 	}
+
+	public static int blockingNum() {
+		int count = 0;
+		for(Traffic t: Traffic.tlist) {
+			if(t.isSuccess()) count++;
+		}
+		return count;
+	}
+
+	public static double blockingRate(int i) {
+		int count = 0;
+		for(Traffic t: Traffic.tlist) {
+			if(t.isSuccess()) count++;
+		}
+		return (count+0.0)/i;
+	}
 }

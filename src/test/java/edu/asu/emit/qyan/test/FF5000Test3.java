@@ -20,8 +20,8 @@ import paper.fit.FirstFitPlusImpl;
 import paper.fit.FirstLastFitAlgrImpl;
 import paper.fit.SlotAssignAlgr;
 
-public class FF320Test {
-	public static final String file = "d:\\\\traffic320.obj";
+public class FF5000Test3 {
+	public static final String file = "d:\\traffic5000.obj";
 //	@BeforeTest
 	public void generateTraTest(){
 			String file = "d:\\traffic320.obj";
@@ -129,7 +129,7 @@ public class FF320Test {
 //		Assert.assertEquals(t.getEdgeList().get(0).getSlotList()[0][319].isUsed(), true);
 	}
 	
-//	@Test
+	@Test
 	public void  fforitest() {//33,44,55
 		Traffic.unSerialTraffic(file);
 
@@ -162,7 +162,7 @@ public class FF320Test {
 //		Assert.assertEquals(t.getEdgeList().get(0).getSlotList()[0][319].isUsed(), true);
 	}
 	
-	@Test
+//	@Test
 	public void  fltest() {//35,44,53 flf
 		Traffic.unSerialTraffic(file);
 

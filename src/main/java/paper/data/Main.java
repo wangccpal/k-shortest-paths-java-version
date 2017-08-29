@@ -4,12 +4,13 @@ public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Traffic.randomGenTraffic(1000,12,12);
-		Traffic.serialTraffic("d:\\traffic1000.obj");
-		Traffic.unSerialTraffic("d:\\traffic1000.obj");
+		final String file = "d:\\traffic8000.obj";
+		Traffic.randomGenTraffic(8000,12,12);
+		Traffic.serialTraffic(file);
+		Traffic.unSerialTraffic(file);
 //		统计每种业务的数量
 		int n3 = 0;
-		int n4=0;
+		int n4=0;  
 		int n5 =0;
 		for(Traffic tra : Traffic.tlist) {
 			switch (tra.getSlotNum()) {

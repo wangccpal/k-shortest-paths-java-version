@@ -20,8 +20,8 @@ import paper.fit.FirstFitPlusImpl;
 import paper.fit.FirstLastFitAlgrImpl;
 import paper.fit.SlotAssignAlgr;
 
-public class FF320Test {
-	public static final String file = "d:\\\\traffic320.obj";
+public class FF10000Test3 {
+	public static final String file = "d:\\traffic10000.obj";
 //	@BeforeTest
 	public void generateTraTest(){
 			String file = "d:\\traffic320.obj";
@@ -96,7 +96,7 @@ public class FF320Test {
 	
 	}
 	
-//	@Test
+	@Test
 	public void  fftest() {//35,44,53 ff
 		Traffic.unSerialTraffic(file);
 
@@ -184,9 +184,12 @@ public class FF320Test {
 				};
 			}
 			tra.setSuccess(pathSuccess);
-			System.out.println("业务: "+(i++)+" 路由是"+ tra.getPath());
-			System.out.println(tra);
+//			System.out.println("业务: "+(i++)+" 路由是"+ tra.getPath());
+//			System.out.println(tra);
 			t= tra;
+			double load = Edge.getTrafficLoad();
+			//0.6,.0.7,0.,0.9,1附近打印一次
+			if(load >0.5 && load < 0.6 ) System.out.println("current load is " + load +", BR:" + Traffic.blockingRate());
 		}
 		for(Entry<String,Edge> e : Edge.emap.entrySet()) {
 			System.out.println(e.getValue());

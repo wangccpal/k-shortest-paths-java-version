@@ -5,10 +5,12 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 public class Edge {
 	private static final int slotNum = 320;
 	private static final int FiberNum = 7;
+	public static double allRate;
 	int vertexId1;
 	int vertexId2;
 	String id;
@@ -17,9 +19,17 @@ public class Edge {
 	public static Map<String,Edge> emap = new HashMap();
 	Slot[][] slotList = new Slot[FiberNum][slotNum];
 	double [] useRate = new double [FiberNum];
+	private double sum;
 	
+	public static double getTrafficLoad() {
+		double rst = 0;
+		for(Entry<String,Edge> e : Edge.emap.entrySet()) {
+			rst = Math.max(rst , e.getValue().sum);
+		}
+		return rst;
+	}
 	public String calUseRate() {
-		double sum = 0;
+		sum = 0;
 		for(int i=0;i<FiberNum;i++) {
 			int used = 0;
 			for(int j =0;j<slotNum;j++) {
@@ -30,6 +40,24 @@ public class Edge {
 		}
 		return Arrays.toString(useRate) + sum;
 	}
+	
+	public double getSum() {
+		return sum;
+	}
+
+	public void setSum(double sum) {
+		this.sum = sum;
+	}
+
+	//计算使用率
+	public static String calAllUseRate() {
+		allRate = 0;
+		for(Entry<String,Edge> e : Edge.emap.entrySet()) {
+			allRate +=e.getValue().getSum();
+		}
+		return  "" + allRate;
+	}
+	
 	public Slot[][] getSlotList() {
 		return slotList;
 	}
@@ -73,7 +101,7 @@ public class Edge {
 
 	@Override
 	public String toString() {
-		return "Edge [+id=" + id + ", weight=" + weight + "]" + calUseRate();
+		return "Edge [+id=" + id + ", weight=" + weight + "]" + calUseRate() + " all:" +calAllUseRate();
 	}
 
 	public void setVertexId2(int vertexId2) {
